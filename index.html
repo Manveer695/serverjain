@@ -1,0 +1,56 @@
+  <!DOCTYPE html>
+  <html >
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+     
+      </script>
+     
+    </head>
+    <body>
+      <input type="file" id="file_upload">
+
+      <script type="text/javascript">
+        var file_upload=document.getElementById("file_upload");
+        file_upload.addEventListener('change',function(){
+            var files=this.files;
+            if(files[0].type.match('image'))
+            {
+                readFile(files[0]);
+
+            }
+
+
+
+        });
+        function readFile(file)
+        {
+            var reader=new FileReader();
+            reader.onload=function(e)
+            {
+                var blob=new Blob([e.target.result],{type:"image/jpeg"});
+
+                var oReq = new XMLHttpRequest();
+                oReq.open("POST", "http://localhost:3000", true);
+                oReq.onload = function (oEvent) {
+                  // Uploaded.
+            };
+                oReq.send(blob);
+            
+
+
+
+
+
+
+
+
+
+            };
+            reader.readAsArrayBuffer(file);
+
+        }
+
+      </script>
+    </body>
+  </html>
